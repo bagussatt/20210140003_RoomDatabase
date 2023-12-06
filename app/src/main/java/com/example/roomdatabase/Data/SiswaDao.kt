@@ -4,7 +4,9 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import androidx.room.Update
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface SiswaDao {
@@ -16,4 +18,6 @@ interface SiswaDao {
 
     @Delete
     suspend fun delete(siswa: Siswa)
+    @Query("SELECT * from table_siswa WHERE id = :id")
+    fun getSiswa(id: Int): Flow<Siswa>
 }
